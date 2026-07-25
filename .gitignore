@@ -1,0 +1,61 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+coverage/
+
+# Next.js
+.next/
+out/
+build/
+
+# misc
+.DS_Store
+*.pem
+*.key
+*.cert
+*.crt
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.system_generated/
+.catalyst/pipelines/*.log
+
+# Environment variables & secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# API keys, passwords, and sensitive config
+credentials.json
+secret*.json
+client_secret*.json
+auth*.json
+*.pem
+*.pkcs12
+*.p12
+*.pfx
+zcatalyst.config.json
+catalyst.properties
+catalyst_credentials.json
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
