@@ -111,6 +111,10 @@ Provide a clear, factual answer based strictly on the above records${isKn ? ' in
 // Tier 2: Structured template answer (English & Kannada)
 // ---------------------------------------------------------------------------
 
+function isDef(val) {
+  return val !== undefined && val !== null;
+}
+
 function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang) {
   const { intent } = intentResult;
   const count = rows.length;
@@ -121,9 +125,9 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
       const lines = rows.map(r => {
         const parts = [];
         if (r.year)                 parts.push(`ವರ್ಷ ${r.year}`);
-        if (r.total_firs != null)   parts.push(`ಒಟ್ಟು ಎಫ್‌ಐಆರ್‌ಗಳು: ${r.total_firs}`);
-        if (r.chargesheeted != null) parts.push(`ಚಾರ್ಜ್‌ಶೀಟ್ ಆಗಿರುವುದು: ${r.chargesheeted}`);
-        if (r.under_investigation != null) parts.push(`ತನಿಖೆಯಲ್ಲಿದೆ: ${r.under_investigation}`);
+        if (isDef(r.total_firs))    parts.push(`ಒಟ್ಟು ಎಫ್‌ಐಆರ್‌ಗಳು: ${r.total_firs}`);
+        if (isDef(r.chargesheeted)) parts.push(`ಚಾರ್ಜ್‌ಶೀಟ್ ಆಗಿರುವುದು: ${r.chargesheeted}`);
+        if (isDef(r.under_investigation)) parts.push(`ತನಿಖೆಯಲ್ಲಿದೆ: ${r.under_investigation}`);
         return parts.join(' | ');
       });
       return `ಒಟ್ಟು ಅಂಕಿಅಂಶಗಳ ವಿವರಗಳು ಇಲ್ಲಿವೆ:\n${lines.join('\n')}`;
@@ -131,9 +135,9 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
       const lines = rows.map(r => {
         const parts = [];
         if (r.year)                 parts.push(`Year ${r.year}`);
-        if (r.total_firs != null)   parts.push(`Total FIRs: ${r.total_firs}`);
-        if (r.chargesheeted != null) parts.push(`Chargesheeted: ${r.chargesheeted}`);
-        if (r.under_investigation != null) parts.push(`Under Investigation: ${r.under_investigation}`);
+        if (isDef(r.total_firs))   parts.push(`Total FIRs: ${r.total_firs}`);
+        if (isDef(r.chargesheeted)) parts.push(`Chargesheeted: ${r.chargesheeted}`);
+        if (isDef(r.under_investigation)) parts.push(`Under Investigation: ${r.under_investigation}`);
         return parts.join(' | ');
       });
       return `Here are the aggregate statistics:\n${lines.join('\n')}`;
@@ -151,7 +155,7 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
             r.crime_number ? `ಅಪರಾಧ ಸಂಖ್ಯೆ: ${r.crime_number}` : null,
             r.fir_date     ? `ಎಫ್‌ಐಆರ್ ದಿನಾಂಕ: ${formatDate(r.fir_date)}` : null,
             r.brief_facts  ? `ಸಂಕ್ಷಿಪ್ತ ವಿವರಗಳು: ${r.brief_facts.slice(0, 300)}${r.brief_facts.length > 300 ? '…' : ''}` : null,
-            r.chargesheet_filed != null ? `ಚಾರ್ಜ್‌ಶೀಟ್ ಸಲ್ಲಿಕೆ: ${r.chargesheet_filed ? 'ಹೌದು' : 'ಇಲ್ಲ'}` : null,
+            isDef(r.chargesheet_filed) ? `ಚಾರ್ಜ್‌ಶೀಟ್ ಸಲ್ಲಿಕೆ: ${r.chargesheet_filed ? 'ಹೌದು' : 'ಇಲ್ಲ'}` : null,
           ].filter(Boolean).join('\n');
         }
         return [
@@ -159,7 +163,7 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
           r.crime_number ? `Crime Number: ${r.crime_number}` : null,
           r.fir_date     ? `FIR Date: ${formatDate(r.fir_date)}` : null,
           r.brief_facts  ? `Brief Facts: ${r.brief_facts.slice(0, 300)}${r.brief_facts.length > 300 ? '…' : ''}` : null,
-          r.chargesheet_filed != null ? `Chargesheet Filed: ${r.chargesheet_filed ? 'Yes' : 'No'}` : null,
+          isDef(r.chargesheet_filed) ? `Chargesheet Filed: ${r.chargesheet_filed ? 'Yes' : 'No'}` : null,
         ].filter(Boolean).join('\n');
       }
       if (isKn) {
@@ -184,7 +188,7 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
             r.age        ? `ವಯಸ್ಸು: ${r.age}` : null,
             r.gender     ? `ಲಿಂಗ: ${r.gender}` : null,
             r.is_repeat_offender ? `ಪುನರಾವರ್ತಿತ ಅಪರಾಧಿ: ಹೌದು (${r.prior_cases_count || 0} ಹಳೆಯ ಪ್ರಕರಣಗಳು)` : null,
-            r.is_arrested != null ? `ಬಂಧನಕ್ಕೊಳಗಾಗಿದ್ದಾರೆಯೇ: ${r.is_arrested ? 'ಹೌದು' : 'ಇಲ್ಲ'}` : null,
+            isDef(r.is_arrested) ? `ಬಂಧನಕ್ಕೊಳಗಾಗಿದ್ದಾರೆಯೇ: ${r.is_arrested ? 'ಹೌದು' : 'ಇಲ್ಲ'}` : null,
           ].filter(Boolean).join('\n');
         }
         return [
@@ -194,7 +198,7 @@ function composeWithTemplate(question, rows, queryMeta, intentResult, role, lang
           r.age        ? `Age: ${r.age}` : null,
           r.gender     ? `Gender: ${r.gender}` : null,
           r.is_repeat_offender ? `Repeat Offender: Yes (${r.prior_cases_count || 0} prior cases)` : null,
-          r.is_arrested != null ? `Arrested: ${r.is_arrested ? 'Yes' : 'No'}` : null,
+          isDef(r.is_arrested) ? `Arrested: ${r.is_arrested ? 'Yes' : 'No'}` : null,
         ].filter(Boolean).join('\n');
       }
       if (isKn) {
@@ -247,7 +251,7 @@ function buildSources(rows, tables, isAggregate) {
     const excerptFields = ['crime_number', 'fir_date', 'brief_facts', 'full_name', 'status_name',
                            'year', 'total_firs', 'chargesheeted', 'under_investigation'];
     const excerptParts  = excerptFields
-      .filter(f => row[f] != null)
+      .filter(f => isDef(row[f]))
       .map(f => `${f}: ${String(row[f]).slice(0, 80)}`);
 
     return {

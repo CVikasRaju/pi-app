@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
     return res.end(JSON.stringify({ error: 'Invalid JSON body' }));
   }
 
-  const { question, session_context = null, role = 'investigator', user_id, user_email, language = 'en' } = body;
+  const { question, session_context = null, role = 'investigator', language = 'en' } = body;
 
   if (!question || typeof question !== 'string' || question.trim().length === 0) {
     res.writeHead(400);

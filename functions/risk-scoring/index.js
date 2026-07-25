@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
 // ---------------------------------------------------------------------------
 // Single accused risk score
 // ---------------------------------------------------------------------------
-async function handleSingleRisk(catalystApp, req, res, url) {
+async function handleSingleRisk(catalystApp, req, res, _url) {
   let body = '';
   await new Promise(resolve => {
     req.on('data', chunk => { body += chunk; });

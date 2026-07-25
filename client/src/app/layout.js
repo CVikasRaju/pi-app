@@ -1,17 +1,4 @@
-import { Outfit, Inter } from 'next/font/google';
 import './globals.css';
-
-const inter = Inter({
-  subsets:  ['latin'],
-  variable: '--font-inter',
-  display:  'swap',
-});
-
-const outfit = Outfit({
-  subsets:  ['latin'],
-  variable: '--font-outfit',
-  display:  'swap',
-});
 
 export const metadata = {
   title:       'PI App — Karnataka SCRB Crime Intelligence',
@@ -27,7 +14,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en">
       <body>
         {/* Animated background mesh — sits behind all content */}
         <div className="bg-mesh" aria-hidden="true" />

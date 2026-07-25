@@ -225,7 +225,7 @@ async function handleHistory(req, res, catalystApp, user) {
 // Route: DELETE /api/chat/session
 // ---------------------------------------------------------------------------
 
-async function handleClearSession(req, res, catalystApp, user) {
+async function handleClearSession(req, res, catalystApp, _user) {
   const body       = await parseBody(req);
   const session_id = body.session_id;
 

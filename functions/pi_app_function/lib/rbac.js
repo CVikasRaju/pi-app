@@ -112,7 +112,7 @@ function hasPermission(role, permission) {
  * @returns {Promise<{ user: object, role: string, userId: string, userEmail: string }>}
  * @throws {RBACError} if unauthenticated or user not in a recognized role group
  */
-async function getAuthenticatedUser(catalystApp, req) {
+async function getAuthenticatedUser(catalystApp, _req) {
   // FIX: Use userManagement() instead of authentication()
   const auth = catalystApp.userManagement();
 

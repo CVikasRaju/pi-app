@@ -10,7 +10,7 @@
  */
 
 const https = require('https');
-const { checkRole, ROLES, PERMISSIONS, hasPermission, sendRBACError } = require('../lib/rbac');
+const { checkRole, PERMISSIONS, sendRBACError } = require('../lib/rbac');
 const { writeAuditLog } = require('../lib/auditLogger');
 const { sendJSON } = require('../lib/routeHelpers');
 

@@ -31,8 +31,8 @@ const ROUTE_REGISTRY = [
   { method: 'GET',    path: '/api/fir/:id',             permission: 'READ_FIR_DETAIL',       pii_level: 'ROW',       description: 'Single FIR full detail (PII)' },
 
   // Chat
-  { method: 'POST',   path: '/api/chat',                permission: 'CHAT_SEND',             pii_level: 'LIST',      description: 'Send chat message' },
-  { method: 'GET',    path: '/api/chat/history',        permission: 'READ_CHAT_HISTORY',     pii_level: 'LIST',      description: 'Conversation history' },
+  { method: 'POST',   path: '/api/chat',                permission: 'CHAT_SEND',             pii_level: 'NONE',      description: 'Send chat message (Policymaker aggregate-enforced)' },
+  { method: 'GET',    path: '/api/chat/history',        permission: 'READ_CHAT_HISTORY',     pii_level: 'NONE',      description: 'Conversation history' },
   { method: 'DELETE', path: '/api/chat/session',        permission: 'CHAT_SEND',             pii_level: 'NONE',      description: 'Clear session context' },
   { method: 'POST',   path: '/api/chat/pdf',            permission: 'EXPORT_PDF',            pii_level: 'LIST',      description: 'Export PDF transcript' },
   { method: 'GET',    path: '/api/chat/trace',          permission: 'READ_CHAT_HISTORY',     pii_level: 'NONE',      description: 'XAI reasoning trace (non-PII)' },

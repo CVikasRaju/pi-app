@@ -18,14 +18,7 @@ const inMemoryGraph = {
   lastSynced: null,
 };
 
-function parseBody(req) {
-  return new Promise((resolve, reject) => {
-    let d = '';
-    req.on('data', c => { d += c; });
-    req.on('end',  () => { try { resolve(JSON.parse(d || '{}')); } catch { resolve({}); } });
-    req.on('error', reject);
-  });
-}
+
 
 function sendJSON(res, status, data) {
   res.setHeader('Content-Type', 'application/json');
@@ -137,6 +130,17 @@ module.exports = async (req, res) => {
           label: 'VICTIM IN'
         });
       }
+    });
+
+    // Add Vehicle nodes
+    vehicles.forEach(vh => {
+      const nodeId = `VEHICLE_${vh.ROWID}`;
+      nodesMap.set(nodeId, {
+        id: nodeId,
+        label: `${vh.plate_number} (${vh.make_model})`,
+        type: 'Vehicle',
+        properties: { ...vh }
+      });
     });
 
     // Add Financial Accounts & Shared Account Edges (Financial Link Analysis)

@@ -25,16 +25,25 @@
 
 const catalyst = require('zcatalyst-sdk-node');
 
+const crypto = require('crypto');
 const INTERNAL_SECRET = process.env.INTERNAL_AUDIT_SECRET || '';
+
+function safeCompare(a, b) {
+  if (!a || !b) return false;
+  const bufA = Buffer.from(String(a));
+  const bufB = Buffer.from(String(b));
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
 
 module.exports = async (req, res) => {
   const catalystApp = catalyst.initialize(req);
 
   // --------------------------------------------------------------------------
-  // Secret-based internal auth check
+  // Secret-based internal auth check (timing-safe)
   // --------------------------------------------------------------------------
   const providedSecret = req.headers['x-internal-secret'] || '';
-  if (!INTERNAL_SECRET || providedSecret !== INTERNAL_SECRET) {
+  if (!INTERNAL_SECRET || !safeCompare(providedSecret, INTERNAL_SECRET)) {
     res.writeHead(403, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Forbidden: invalid internal secret' }));
     return;

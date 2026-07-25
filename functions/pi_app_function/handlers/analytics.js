@@ -15,7 +15,7 @@
  * flagged in AuditLog as SENSITIVE_AGGREGATE_ACCESS.
  */
 
-const { checkRole, ROLES, PERMISSIONS, hasPermission, RBACError, sendRBACError } = require('../lib/rbac');
+const { checkRole, PERMISSIONS, sendRBACError } = require('../lib/rbac');
 const { writeAuditLog } = require('../lib/auditLogger');
 const { sendJSON } = require('../lib/routeHelpers');
 

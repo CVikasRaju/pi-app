@@ -19,7 +19,6 @@
  */
 
 const catalyst   = require('zcatalyst-sdk-node');
-const { randomUUID } = require('crypto');
 
 const { getHistory }        = require('./lib/historyStore');
 const { renderTranscript }  = require('./lib/transcriptRenderer');

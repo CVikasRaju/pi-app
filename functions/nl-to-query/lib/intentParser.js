@@ -76,7 +76,7 @@ async function parseIntent(catalystApp, question, sessionCtx, role, preferredLan
 // Tier 1: QuickML LLM intent parsing (Multilingual)
 // ---------------------------------------------------------------------------
 
-async function parseWithLLM(catalystApp, question, sessionCtx, role, lang) {
+async function parseWithLLM(catalystApp, question, sessionCtx, _role, _lang) {
   const contextSnippet = buildContextSnippet(sessionCtx);
 
   const systemPrompt = `You are a multilingual intent parser for a Karnataka Police crime intelligence system.
@@ -232,7 +232,7 @@ const STATUS_MAP = {
   'under trial':         ['under trial', 'in court', 'trial', 'ನ್ಯಾಯಾಲಯದಲ್ಲಿ ವಿಚಾರಣೆ'],
 };
 
-function parseWithRegex(question, sessionCtx, role, lang) {
+function parseWithRegex(question, sessionCtx, _role, _lang) {
   const q = question.toLowerCase();
 
   let intent = INTENTS.UNKNOWN;
@@ -323,7 +323,7 @@ function buildContextSnippet(sessionCtx) {
     .join('\n---\n');
 }
 
-async function getCatalystToken(catalystApp) {
+async function getCatalystToken(_catalystApp) {
   return process.env.CATALYST_SERVICE_TOKEN || '';
 }
 

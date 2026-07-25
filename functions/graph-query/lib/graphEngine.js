@@ -72,7 +72,7 @@ const SEED_GRAPH = {
 /**
  * Execute Cypher or run graph neighborhood search
  */
-async function queryGraph({ queryType = 'network', searchQuery = '', role = 'investigator' }) {
+async function queryGraph({ queryType = 'network', searchQuery = '', _role = 'investigator' }) {
   const driver = getDriver();
 
   if (driver) {
@@ -82,7 +82,7 @@ async function queryGraph({ queryType = 'network', searchQuery = '', role = 'inv
       if (queryType === 'financial_links') {
         cypher = 'MATCH (a:Person)-[:LINKED_ACCOUNT]->(acc:FinancialAccount)<-[:LINKED_ACCOUNT]-(b:Person) RETURN a, acc, b LIMIT 25';
       }
-      const result = await session.run(cypher);
+      await session.run(cypher);
       await session.close();
 
       const nodes = [];
@@ -126,7 +126,6 @@ async function queryGraph({ queryType = 'network', searchQuery = '', role = 'inv
 
   if (queryType === 'financial_links') {
     // Surface shared financial accounts linked across multiple accused
-    const accountNodeIds = new Set(SEED_GRAPH.nodes.filter(n => n.type === 'FinancialAccount').map(n => n.id));
     filteredEdges = SEED_GRAPH.edges.filter(e => e.type === 'LINKED_ACCOUNT' || e.type === 'TRANSFERRED_TO');
     const activeNodeIds = new Set();
     filteredEdges.forEach(e => { activeNodeIds.add(e.source); activeNodeIds.add(e.target); });

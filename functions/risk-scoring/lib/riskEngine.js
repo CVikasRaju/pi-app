@@ -227,7 +227,7 @@ function buildFactors(features) {
 // ---------------------------------------------------------------------------
 // Fetch accused list for batch scoring
 // ---------------------------------------------------------------------------
-async function fetchAccusedList(catalystApp, { caseId, stationId }) {
+async function fetchAccusedList(catalystApp, { caseId, _stationId }) {
   try {
     const zcql = catalystApp.zcql();
     if (caseId) {

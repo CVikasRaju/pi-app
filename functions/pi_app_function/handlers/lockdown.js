@@ -83,7 +83,7 @@ module.exports = {
         const limit  = Math.min(parseInt(url.searchParams.get('limit') || '50', 10), 200);
         const action = url.searchParams.get('action') || null;
 
-        let zcql = catalystApp.zcql();
+        const zcql = catalystApp.zcql();
         const whereClause = action ? `WHERE action = '${action}'` : '';
         const rows = await zcql.executeZCQLQuery(
           `SELECT ROWID, user_email, role, action, resource, details, created_time

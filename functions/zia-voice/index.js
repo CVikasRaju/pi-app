@@ -13,7 +13,7 @@ const catalyst = require('zcatalyst-sdk-node');
 
 function parseBody(req) {
   return new Promise((resolve, reject) => {
-    let chunks = [];
+    const chunks = [];
     req.on('data', c => chunks.push(c));
     req.on('end',  () => {
       const raw = Buffer.concat(chunks);

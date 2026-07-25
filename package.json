@@ -4,6 +4,9 @@
   "description": "Karnataka Police PI App — Root workspace scripts",
   "private": true,
   "scripts": {
+    "dev:backend":    "node scripts/dev-server.js",
+    "dev:client":     "npm run dev --prefix client",
+    "test":          "node --test tests/*.test.js",
     "lint":          "eslint \"functions/**/*.js\" --max-warnings=0",
     "lint:fix":      "eslint \"functions/**/*.js\" --fix",
     "syntax-check":  "node -e \"const fs=require('fs');const g=require('glob');g.sync('functions/*/index.js').forEach(f=>{try{require('child_process').execSync('node --check '+f,{stdio:'inherit'})}catch(e){process.exit(1)}});console.log('All function entry points OK')\"",

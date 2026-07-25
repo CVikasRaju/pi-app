@@ -114,7 +114,7 @@ function buildHotspotFeatures(rows, topN, days) {
 // ---------------------------------------------------------------------------
 // Bucket trend data by week or month
 // ---------------------------------------------------------------------------
-function bucketTrends(rows, groupBy, months) {
+function bucketTrends(rows, groupBy, _months) {
   const buckets = {};
   for (const row of rows) {
     const dateStr = String(row.fir_date || row['CaseMaster.fir_date'] || '');

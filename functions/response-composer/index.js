@@ -71,7 +71,6 @@ module.exports = async (req, res) => {
     no_results = false,
     tier_used  = 'template',
     role       = 'investigator',
-    question,
     intent,
     is_aggregate = false,
     session_id,

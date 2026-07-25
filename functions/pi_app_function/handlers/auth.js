@@ -8,9 +8,9 @@
  *   POST /api/auth/logout → invalidate session (client-side clear)
  */
 
-const { ROLES, checkRole, getAuthenticatedUser, RBACError, sendRBACError } = require('../lib/rbac');
+const { getAuthenticatedUser, sendRBACError } = require('../lib/rbac');
 const { ACTIONS, logAuth, logError } = require('../lib/auditLogger');
-const { parseBody, sendJSON } = require('../lib/routeHelpers');
+const { sendJSON } = require('../lib/routeHelpers');
 
 // ---------------------------------------------------------------------------
 // GET /api/auth/me — returns current authenticated user profile + role

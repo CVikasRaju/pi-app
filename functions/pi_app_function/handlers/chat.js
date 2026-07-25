@@ -15,7 +15,7 @@
 
 const { checkRole, ROLES, hasPermission } = require('../lib/rbac');
 const { logRead, ACTIONS }               = require('../lib/auditLogger');
-const { sendJSON, parseBody }            = require('../lib/routeHelpers');
+const { sendJSON }                        = require('../lib/routeHelpers');
 const { traceCollector }                 = require('../lib/traceCollector');
 const { randomUUID }                     = require('crypto');
 

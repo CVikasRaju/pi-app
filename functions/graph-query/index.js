@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
   if (req.method !== 'POST') return sendJSON(res, 405, { error: 'Method not allowed' });
 
-  const catalystApp = catalyst.initialize(req);
+  catalyst.initialize(req);
 
   try {
     const body = await parseBody(req);

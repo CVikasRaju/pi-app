@@ -71,7 +71,7 @@ const VICTIM_COLUMNS = {
  * @param {object} extraFilters  - optional additional filters from client
  * @returns {{ sql, params, tables, is_aggregate, description }}
  */
-function buildQuery(intentResult, role, extraFilters = {}) {
+function buildQuery(intentResult, role) {
   const { intent, entities } = intentResult;
   const isPolicymaker = role === 'policymaker';
   const isAnalyst     = role === 'analyst';
@@ -116,7 +116,7 @@ function buildQuery(intentResult, role, extraFilters = {}) {
 // Query builders
 // ---------------------------------------------------------------------------
 
-function buildFIRQuery(entities, full, listOnly, role) {
+function buildFIRQuery(entities, full, listOnly, _role) {
   const cols = full ? FIR_COLUMNS.full : FIR_COLUMNS.list;
   const conditions = [];
   const params     = {};
@@ -189,7 +189,7 @@ function buildFIRQuery(entities, full, listOnly, role) {
   };
 }
 
-function buildAccusedQuery(entities, full, role) {
+function buildAccusedQuery(entities, full, _role) {
   const cols = full ? ACCUSED_COLUMNS.full : ACCUSED_COLUMNS.list;
   const conditions = ['1=1'];
   const params     = {};
@@ -231,7 +231,7 @@ function buildAccusedQuery(entities, full, role) {
   };
 }
 
-function buildVictimQuery(entities, full, role) {
+function buildVictimQuery(entities, _full, _role) {
   const cols = VICTIM_COLUMNS.full;
   const conditions = ['1=1'];
   const params     = {};
@@ -327,7 +327,7 @@ function buildAggregateQuery(entities, role, reason) {
   };
 }
 
-function buildOfficerQuery(entities, role) {
+function buildOfficerQuery(entities, _role) {
   const conditions = ['1=1'];
   const params     = {};
 

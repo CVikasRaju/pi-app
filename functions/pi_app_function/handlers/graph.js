@@ -13,7 +13,7 @@ const GRAPH_QUERY_URL = process.env.GRAPH_QUERY_URL || 'http://localhost:9007';
 
 async function handleGraphRequest(catalystApp, req, res) {
   // Check auth & role permissions for graph intelligence
-  const { user, role } = await checkRole(catalystApp, req, Object.values(ROLES).filter(r => r !== 'system'));
+  await checkRole(catalystApp, req, Object.values(ROLES).filter(r => r !== 'system'));
 
   try {
     let bodyBuffer = null;

@@ -16,7 +16,7 @@
  * Policymaker NEVER gets row-level FIR data.
  */
 
-const { ROLES, checkRole, RBACError, sendRBACError } = require('../lib/rbac');
+const { ROLES, checkRole, sendRBACError } = require('../lib/rbac');
 const { ACTIONS, TABLES, logRead, logError } = require('../lib/auditLogger');
 const { sendJSON, getPagination } = require('../lib/routeHelpers');
 
@@ -42,9 +42,6 @@ async function handleFIRList(catalystApp, req, res, query) {
   const { page, pageSize, offset }  = getPagination(query);
 
   try {
-    const datastore = catalystApp.datastore();
-    const table     = datastore.table('FIR');
-
     // Build ZCQL query — safe, parameterized via Catalyst SDK
     // Filters from query string (station_id, status_id, year, from_date, to_date)
     let zcql = `SELECT ROWID, crime_number, year, station_id, fir_date, occurrence_from, ` +
@@ -189,7 +186,7 @@ async function handleFIRDetail(catalystApp, req, res, firId) {
 // GET /api/fir/stats — aggregate stats (safe for all roles incl. policymaker)
 // ---------------------------------------------------------------------------
 
-async function handleFIRStats(catalystApp, req, res, query) {
+async function handleFIRStats(catalystApp, req, res, _query) {
   let authData;
   try {
     authData = await checkRole(catalystApp, req, [
