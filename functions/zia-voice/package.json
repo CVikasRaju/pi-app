@@ -1,0 +1,9 @@
+{
+  "name": "zia-voice",
+  "version": "1.0.0",
+  "description": "PI App — Speech-to-Text & Text-to-Speech via Catalyst Zia Services",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "zcatalyst-sdk-node": "^2.5.0" },
+  "engines": { "node": ">=20" }
+}

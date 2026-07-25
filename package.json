@@ -1,0 +1,18 @@
+{
+  "name": "pi-app",
+  "version": "5.0.0",
+  "description": "Karnataka Police PI App — Root workspace scripts",
+  "private": true,
+  "scripts": {
+    "lint":          "eslint \"functions/**/*.js\" --max-warnings=0",
+    "lint:fix":      "eslint \"functions/**/*.js\" --fix",
+    "syntax-check":  "node -e \"const fs=require('fs');const g=require('glob');g.sync('functions/*/index.js').forEach(f=>{try{require('child_process').execSync('node --check '+f,{stdio:'inherit'})}catch(e){process.exit(1)}});console.log('All function entry points OK')\"",
+    "build:client":  "npm run build --prefix client",
+    "deploy":        "catalyst deploy",
+    "deploy:functions": "catalyst deploy functions",
+    "deploy:client": "catalyst deploy client"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}

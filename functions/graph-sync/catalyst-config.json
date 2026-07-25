@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "graph-sync",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

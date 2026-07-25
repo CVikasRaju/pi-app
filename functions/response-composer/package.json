@@ -1,0 +1,9 @@
+{
+  "name": "response-composer",
+  "version": "1.0.0",
+  "description": "PI App — ChatMessage formatter + citation validator (internal)",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "zcatalyst-sdk-node": "^2.5.0" },
+  "engines": { "node": ">=20" }
+}

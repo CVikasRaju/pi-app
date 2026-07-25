@@ -1,0 +1,98 @@
+# Catalyst Pipelines CI/CD
+# Phase 5 — XAI & Governance Hardening
+#
+# Pipeline: pi-app-ci
+# Trigger:  push to main branch
+#
+# Stages:
+#   1. lint      — ESLint all functions + next lint on client
+#   2. typecheck — next build --no-emit (type validation)
+#   3. build     — npx next build
+#   4. deploy    — catalyst deploy (functions + client)
+#
+# References:
+#   https://docs.catalyst.zoho.com/en/pipelines/
+
+name: pi-app-ci
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: "20"
+  CATALYST_PROJECT_ID: ${{ secrets.CATALYST_PROJECT_ID }}
+  CATALYST_ENV: development
+
+stages:
+
+  # ── Stage 1: Lint ────────────────────────────────────────────────────────────
+  - name: lint
+    steps:
+      - name: Install root deps
+        run: npm ci
+        working_directory: .
+
+      - name: Lint functions (root eslint)
+        run: npx eslint "functions/**/*.js" --max-warnings=0
+
+      - name: Lint client
+        run: npm run lint
+        working_directory: client
+
+  # ── Stage 2: Syntax check all function entry points ─────────────────────────
+  - name: syntax-check
+    steps:
+      - name: Check function syntax
+        run: |
+          for f in functions/*/index.js; do
+            echo "Checking $f"
+            node --check "$f"
+          done
+
+  # ── Stage 3: Build client ────────────────────────────────────────────────────
+  - name: build
+    steps:
+      - name: Install client dependencies
+        run: npm ci
+        working_directory: client
+
+      - name: Build Next.js
+        run: npx next build
+        working_directory: client
+        env:
+          NEXT_PUBLIC_API_URL: ""
+
+  # ── Stage 4: Deploy functions ────────────────────────────────────────────────
+  - name: deploy-functions
+    depends_on: [lint, syntax-check]
+    steps:
+      - name: Install function dependencies
+        run: |
+          for dir in functions/*/; do
+            if [ -f "$dir/package.json" ]; then
+              echo "Installing $dir"
+              npm ci --prefix "$dir"
+            fi
+          done
+
+      - name: Deploy all functions
+        run: catalyst deploy functions --env $CATALYST_ENV
+
+  # ── Stage 5: Deploy client ───────────────────────────────────────────────────
+  - name: deploy-client
+    depends_on: [build, deploy-functions]
+    steps:
+      - name: Deploy client
+        run: catalyst deploy client --env $CATALYST_ENV
+
+notifications:
+  on_failure:
+    - type: email
+      recipients:
+        - devops@karnataka.police.in
+  on_success:
+    - type: email
+      recipients:
+        - devops@karnataka.police.in

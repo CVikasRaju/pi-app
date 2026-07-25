@@ -1,0 +1,6 @@
+{
+    "name": "client",
+    "scripts": {
+        "serve": "npm run dev"
+    }
+}

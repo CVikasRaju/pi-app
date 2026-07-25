@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "commonjs"
+  },
+  "rules": {
+    "no-unused-vars":    ["warn", { "argsIgnorePattern": "^_" }],
+    "no-console":        "off",
+    "no-process-env":    "off",
+    "semi":              ["error", "always"],
+    "no-var":            "error",
+    "prefer-const":      "warn",
+    "eqeqeq":            ["error", "always"],
+    "no-eval":           "error",
+    "no-implied-eval":   "error",
+    "no-new-func":       "error"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "client/",
+    ".next/",
+    "*.min.js"
+  ]
+}

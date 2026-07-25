@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "zia-voice",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

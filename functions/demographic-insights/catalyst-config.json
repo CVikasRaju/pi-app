@@ -1,0 +1,15 @@
+{
+  "functions": [
+    {
+      "name": "demographic-insights",
+      "file": "index.js",
+      "type": "Advanced IO",
+      "runtime": "Node.js 20",
+      "memory": 256,
+      "timeout": 30,
+      "environment": [
+        { "name": "CLIENT_ORIGIN", "value": "" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "neo4j-graph",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "run": {
+    "port": 7687,
+    "env_variables": {
+      "NEO4J_AUTH": "neo4j/pi_app_secret_123"
+    },
+    "memory": 1024
+  }
+}

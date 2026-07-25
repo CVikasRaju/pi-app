@@ -1,0 +1,24 @@
+{
+  "client": {
+    "source": "client"
+  },
+  "functions": {
+    "targets": [
+      "pi_app_function",
+      "audit-logger",
+      "chat-router",
+      "nl-to-query",
+      "response-composer",
+      "pdf-export",
+      "zia-voice",
+      "graph-sync",
+      "graph-query",
+      "risk-scoring",
+      "hotspot-detection",
+      "demographic-insights",
+      "early-warning"
+    ],
+    "ignore": [],
+    "source": "functions"
+  }
+}

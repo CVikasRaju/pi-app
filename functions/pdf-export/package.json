@@ -1,0 +1,9 @@
+{
+  "name": "pdf-export",
+  "version": "1.0.0",
+  "description": "PI App — Conversation transcript → PDF via SmartBrowz",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "zcatalyst-sdk-node": "^2.5.0" },
+  "engines": { "node": ">=20" }
+}

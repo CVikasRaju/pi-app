@@ -1,0 +1,9 @@
+{
+  "name": "graph-sync",
+  "version": "1.0.0",
+  "description": "PI App — Knowledge Graph ETL Sync Job",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "zcatalyst-sdk-node": "^2.5.0", "neo4j-driver": "^5.18.0" },
+  "engines": { "node": ">=20" }
+}

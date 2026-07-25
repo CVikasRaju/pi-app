@@ -1,0 +1,10 @@
+{
+  "name": "pi_app_function",
+  "version": "0.1.0",
+  "description": "PI App — pi-api gateway function (Phase 0)",
+  "main": "index.js",
+  "author": "vikasrajuc15@gmail.com",
+  "dependencies": {
+    "zcatalyst-sdk-node": "latest"
+  }
+}

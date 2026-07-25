@@ -1,0 +1,9 @@
+{
+  "name": "graph-query",
+  "version": "1.0.0",
+  "description": "PI App — Knowledge Graph Cypher & Network Intelligence Engine",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "zcatalyst-sdk-node": "^2.5.0", "neo4j-driver": "^5.18.0" },
+  "engines": { "node": ">=20" }
+}

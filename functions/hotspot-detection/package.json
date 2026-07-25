@@ -1,0 +1,10 @@
+{
+  "name": "hotspot-detection",
+  "version": "1.0.0",
+  "description": "Geospatial crime hotspot clustering and time-series trend analysis",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "zcatalyst-sdk-node": "^1.0.0"
+  }
+}

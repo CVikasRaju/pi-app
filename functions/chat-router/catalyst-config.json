@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "chat-router",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

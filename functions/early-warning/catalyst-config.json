@@ -1,0 +1,16 @@
+{
+  "functions": [
+    {
+      "name": "early-warning",
+      "file": "index.js",
+      "type": "Advanced IO",
+      "runtime": "Node.js 20",
+      "memory": 256,
+      "timeout": 60,
+      "environment": [
+        { "name": "CLIENT_ORIGIN",     "value": "" },
+        { "name": "ALERT_FROM_EMAIL",  "value": "alerts@pi-app.karnataka.police.in" }
+      ]
+    }
+  ]
+}

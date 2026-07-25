@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "53138000000019001",
+      "name": "PI-APP",
+      "domain": {
+        "id": "50044254943",
+        "name": "pi-app-60078966147.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60078966147",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

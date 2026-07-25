@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "graph-query",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

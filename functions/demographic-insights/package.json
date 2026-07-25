@@ -1,0 +1,10 @@
+{
+  "name": "demographic-insights",
+  "version": "1.0.0",
+  "description": "Sociological cross-referencing with §4a caste/religion sensitivity controls",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "zcatalyst-sdk-node": "^1.0.0"
+  }
+}

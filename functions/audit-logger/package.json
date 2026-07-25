@@ -1,0 +1,10 @@
+{
+  "name": "audit-logger",
+  "version": "0.1.0",
+  "description": "PI App — Dedicated audit-logger Function (append-only AuditLog writes)",
+  "main": "index.js",
+  "author": "vikasrajuc15@gmail.com",
+  "dependencies": {
+    "zcatalyst-sdk-node": "latest"
+  }
+}

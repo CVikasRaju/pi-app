@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "nl-to-query",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

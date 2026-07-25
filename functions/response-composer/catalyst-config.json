@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "response-composer",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

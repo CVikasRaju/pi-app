@@ -1,0 +1,52 @@
+{
+  "tables": [
+    {
+      "name": "Station",
+      "columns": ["ROWID", "unit_name", "unit_type", "district_id", "parent_unit_id"]
+    },
+    {
+      "name": "Officer",
+      "columns": ["ROWID", "full_name", "badge_number", "rank_id", "station_id", "is_active"]
+    },
+    {
+      "name": "FIR",
+      "columns": ["ROWID", "crime_number", "year", "fir_date", "station_id", "io_officer_id", "category_id", "gravity_id", "crime_head_id", "status_id", "brief_facts", "occurrence_address", "chargesheet_filed", "chargesheet_date"]
+    },
+    {
+      "name": "Accused",
+      "columns": ["ROWID", "full_name", "alias", "age", "gender", "father_name", "address", "is_repeat_offender", "prior_cases_count"]
+    },
+    {
+      "name": "Victim",
+      "columns": ["ROWID", "full_name", "age", "gender", "injury_description"]
+    },
+    {
+      "name": "FIR_Accused",
+      "columns": ["ROWID", "fir_id", "accused_id", "person_label", "role_in_case", "is_arrested", "is_absconding"]
+    },
+    {
+      "name": "FIR_Victim",
+      "columns": ["ROWID", "fir_id", "victim_id", "person_label"]
+    },
+    {
+      "name": "Vehicle",
+      "columns": ["ROWID", "plate_number", "make_model", "color", "owner_name", "vehicle_type"]
+    },
+    {
+      "name": "FinancialAccount",
+      "columns": ["ROWID", "account_number", "bank_name", "branch", "ifsc_code", "account_holder"]
+    },
+    {
+      "name": "Accused_FinancialAccount",
+      "columns": ["ROWID", "accused_id", "account_id", "link_type", "total_transactions_inr"]
+    },
+    {
+      "name": "FIR_Vehicle",
+      "columns": ["ROWID", "fir_id", "vehicle_id", "involvement_type"]
+    },
+    {
+      "name": "AuditLog",
+      "columns": ["ROWID", "user_id", "user_email", "role", "action", "table_name", "record_id", "query_params", "ip_address", "user_agent", "request_id", "status_code", "is_sensitive", "created_time"]
+    }
+  ]
+}

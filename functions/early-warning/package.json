@@ -1,0 +1,10 @@
+{
+  "name": "early-warning",
+  "version": "1.0.0",
+  "description": "Threshold-based early warning — Catalyst Signals + Push Notifications + Mail",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "zcatalyst-sdk-node": "^1.0.0"
+  }
+}

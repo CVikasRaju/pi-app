@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "name": "pdf-export",
+      "type": "advancedio",
+      "runtime": "node20"
+    }
+  ]
+}

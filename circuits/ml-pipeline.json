@@ -1,0 +1,45 @@
+{
+  "name": "ml-pipeline",
+  "description": "Nightly ML pipeline: graph-sync → risk-scoring batch → early-warning threshold evaluation. Orchestrated via Catalyst Circuits.",
+  "version": "1.0.0",
+  "steps": [
+    {
+      "step": 1,
+      "name": "graph-sync",
+      "type": "function",
+      "function": "graph-sync",
+      "description": "Re-sync Data Store entities into Neo4j (AppSail). Updates offender-resolved Person nodes and FIR edges.",
+      "on_failure": "continue"
+    },
+    {
+      "step": 2,
+      "name": "risk-scoring-batch",
+      "type": "function",
+      "function": "risk-scoring",
+      "description": "Batch re-score all accused with open FIRs. Outputs updated risk levels.",
+      "method": "GET",
+      "path": "/api/ml/risk/batch",
+      "depends_on": [],
+      "on_failure": "continue"
+    },
+    {
+      "step": 3,
+      "name": "early-warning-eval",
+      "type": "function",
+      "function": "early-warning",
+      "description": "Evaluate all active AlertThresholds. Fire Push Notifications + Mail if breached.",
+      "depends_on": ["risk-scoring-batch"],
+      "on_failure": "continue"
+    }
+  ],
+  "schedule": {
+    "cron": "0 2 * * *",
+    "description": "Runs every day at 02:00 IST"
+  },
+  "notes": [
+    "Provision this circuit in Catalyst Console > Circuits.",
+    "Catalyst Cron triggers the circuit nightly.",
+    "Each step is independently fault-tolerant (on_failure: continue).",
+    "Catalyst Signals can also trigger early-warning-eval on new FIR insert events."
+  ]
+}
