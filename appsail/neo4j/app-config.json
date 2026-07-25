@@ -6,7 +6,7 @@
   "run": {
     "port": 7687,
     "env_variables": {
-      "NEO4J_AUTH": "neo4j/pi_app_secret_123"
+      "NEO4J_AUTH": "neo4j/change-me-secret-123"
     },
     "memory": 1024
   }

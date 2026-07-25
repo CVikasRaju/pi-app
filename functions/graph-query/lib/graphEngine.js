@@ -12,8 +12,8 @@ let neo4jDriver = null;
 function getDriver() {
   if (neo4jDriver) return neo4jDriver;
   const uri      = process.env.NEO4J_URI;
-  const user     = process.env.NEO4J_USER || 'neo4j';
-  const password = process.env.NEO4J_PASSWORD || 'pi_app_secret_123';
+  const user     = process.env.NEO4J_USER;
+  const password = process.env.NEO4J_PASSWORD;
 
   if (uri && uri.startsWith('bolt')) {
     try {
